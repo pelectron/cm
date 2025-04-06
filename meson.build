@@ -35,7 +35,7 @@ install_headers(sources, subdir: 'cortex')
 
 if (get_option('generate_header'))
   f = configure_file(
-    input: 'include/cortex/cortex.hpp.in',
+    input: 'include/cortex.hpp.in',
     output: 'cortex.hpp',
     configuration: {'CORE': 'cm::@0@<@1@>'.format(core, get_option('max_irq_number'))},
   )
