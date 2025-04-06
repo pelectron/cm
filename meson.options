@@ -1,0 +1,3 @@
+option('generate_header', type: 'boolean', value: true)
+option('max_irq_number', type: 'integer', value: 31)
+option('dev', type:'boolean', value:false)
