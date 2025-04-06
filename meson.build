@@ -1,4 +1,4 @@
-project('cortex', 'cpp', default_options: ['cpp_std=c++20', 'warning_level=3'])
+project('cm', 'cpp', default_options: ['cpp_std=c++20', 'warning_level=3'])
 
 inc_dir = include_directories('include')
 
@@ -44,7 +44,7 @@ install_headers(f, subdir : 'cortex')
   sources += f
 endif
 
-cortex_dep = declare_dependency(include_directories: inc_dir, dependencies: tl_dep, sources:sources)
+cm_dep = declare_dependency(include_directories: inc_dir, dependencies: tl_dep, sources:sources)
 
 if(get_option('dev'))
   executable('main', 'main.cpp', include_directories: inc_dir, dependencies: tl_dep, sources:sources)
