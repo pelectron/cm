@@ -26,26 +26,31 @@ sources = [
   'include/cortex/function.hpp',
   'include/cortex/mpu.hpp',
   'include/cortex/nvic.hpp',
-  'include/cortex/scheduler.hpp',
   'include/cortex/scs.hpp',
   'include/cortex/systick.hpp',
   'include/cortex/type_list.hpp',
 ]
 
-install_headers(sources, subdir : 'cortex')
+install_headers(sources, subdir: 'cortex')
 
 if (get_option('generate_header'))
-  f= configure_file(
+  f = configure_file(
     input: 'include/cortex/cortex.hpp.in',
     output: 'cortex.hpp',
     configuration: {'CORE': 'cm::@0@<@1@>'.format(core, get_option('max_irq_number'))},
   )
-install_headers(f, subdir : 'cortex')
+  install_headers(f, subdir: 'cortex')
   sources += f
 endif
 
-cm_dep = declare_dependency(include_directories: inc_dir, dependencies: tl_dep, sources:sources)
+cm_dep = declare_dependency(include_directories: inc_dir, dependencies: tl_dep, sources: sources)
 
-if(get_option('dev'))
-  executable('main', 'main.cpp', include_directories: inc_dir, dependencies: tl_dep, sources:sources)
+if (get_option('dev'))
+  executable(
+    'main',
+    'main.cpp',
+    include_directories: inc_dir,
+    dependencies: tl_dep,
+    sources: sources,
+  )
 endif
